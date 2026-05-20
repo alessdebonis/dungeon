@@ -3,15 +3,29 @@
 ## Integrante
 - Alessandro De Bonis
 
-## Compilacion
+## Instrucciones de compilacion
 
-### Requisitos
-- CMake 3.14 o superior
-- Compilador de C++ (g++, clang++)
-- Conexion a internet (CMake descarga raylib automaticamente)
+---
 
 ### macOS
+
+**Requisitos:** Xcode Command Line Tools y CMake
+
+**Paso 1:** Instalar Xcode Command Line Tools (si no lo tienes)
 ```
+xcode-select --install
+```
+
+**Paso 2:** Instalar CMake con Homebrew (si no lo tienes)
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install cmake
+```
+
+**Paso 3:** Compilar y ejecutar
+```
+git clone https://github.com/alessdebonis/dungeon.git
+cd dungeon
 mkdir build
 cd build
 cmake ..
@@ -19,24 +33,93 @@ make
 ./dungeon
 ```
 
-### Linux
+---
+
+### Linux (Ubuntu/Debian)
+
+**Paso 1:** Instalar CMake, compilador y librerias necesarias
 ```
-sudo apt install cmake g++ libgl1-mesa-dev libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
+sudo apt update
+sudo apt install cmake g++ git libgl1-mesa-dev libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
+```
+
+**Paso 2:** Compilar y ejecutar
+```
+git clone https://github.com/alessdebonis/dungeon.git
+cd dungeon
 mkdir build
 cd build
 cmake ..
 make
 ./dungeon
 ```
+
+---
 
 ### Windows
+
+**Paso 1:** Instalar Git
+
+1. Ir a https://git-scm.com/download/win
+2. Descargar el instalador y ejecutarlo
+3. Dejar todas las opciones por defecto y darle "Next" hasta terminar
+4. Verificar abriendo PowerShell y escribiendo:
 ```
+git --version
+```
+
+**Paso 2:** Instalar CMake
+
+1. Ir a https://cmake.org/download/
+2. Descargar el archivo "Windows x64 Installer" (.msi)
+3. Ejecutar el instalador
+4. IMPORTANTE: En la pantalla de opciones, seleccionar "Add CMake to the system PATH for all users"
+5. Terminar la instalacion
+6. Cerrar y abrir PowerShell, verificar con:
+```
+cmake --version
+```
+
+**Paso 3:** Instalar MinGW (compilador de C++)
+
+1. Ir a https://github.com/niXman/mingw-builds-binaries/releases
+2. Descargar el archivo que diga: `x86_64-XX.X.X-release-posix-seh-ucrt-rt_vXX-revX.7z` (la version mas reciente)
+3. Extraer el contenido en `C:\mingw64`
+4. Agregar MinGW al PATH del sistema:
+   - Buscar "Variables de entorno" en el menu de inicio
+   - Click en "Variables de entorno"
+   - En "Variables del sistema" buscar "Path" y darle "Editar"
+   - Click en "Nuevo" y agregar: `C:\mingw64\bin`
+   - Darle "Aceptar" a todo
+5. Cerrar y abrir PowerShell, verificar con:
+```
+g++ --version
+```
+
+**Paso 4:** Compilar y ejecutar
+
+```
+git clone https://github.com/alessdebonis/dungeon.git
+cd dungeon
 mkdir build
 cd build
-cmake ..
+cmake .. -G "MinGW Makefiles"
 cmake --build .
-./Debug/dungeon.exe
+.\dungeon.exe
 ```
+
+**Nota:** Si el comando `cmake .. -G "MinGW Makefiles"` da error, probar con:
+```
+cmake .. -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+```
+
+**Alternativa para Windows:** Si tienes Visual Studio instalado, puedes usar:
+```
+cmake ..
+cmake --build . --config Release
+.\Release\dungeon.exe
+```
+
 
 ## Innovaciones implementadas
 1. Motor grafico con raylib para ventana grafica en vez de terminal
