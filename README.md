@@ -3,6 +3,9 @@
 ## Integrante
 - Alessandro De Bonis
 
+## Nota sobre el historial de commits
+Profesor tuve un inconveniente, utilice --force, por que estaba teniendo un problema subiendo mis commits hoy en la mañana, por usarlo sin antes investigar bien no sabia que esto sobreescribiria el historial previo de mis commits. (MVP inicial, sistema de habitaciones, enemigos, inventario, integracion de raylib). Los commits actuales reflejan el estado final del proyecto pero no la totalidad del proceso de desarrollo que se llevo a cabo de forma incremental.
+
 ## Instrucciones de compilacion
 
 ---
